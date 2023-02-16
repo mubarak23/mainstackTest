@@ -14,7 +14,7 @@ export const requiredToken = async (req: Request, res: Response, next: NextFunct
    //  return res.status(422).json({ message: "You are not logged in" });
    }
    const [decoded, err] = await jwt.verify(access_token, jwtSecret)
-   console.log('decoded', decoded)
+   
 
    if (err) {
      if(err.name && err.name === 'TokenExpiredError') {
@@ -24,10 +24,10 @@ export const requiredToken = async (req: Request, res: Response, next: NextFunct
    }
 
    const userId = (decoded as any)._id as string;
-   console.log(userId)
+   
    // Check if user still exist
    const user = await User.findById(userId).select("-password");
-     console.log(user)
+   
    if (!user) {
     throw new Error('User with that token no longer exist')
      

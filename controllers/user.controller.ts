@@ -20,7 +20,7 @@ const createUser = async (req: Request, res: Response) => {
 
   const userCreated = await User.create(userInput);
 
-  return res.status(201).json({ data: userCreated });
+  return res.status(201).json({ message: 'User registered Successfully' });
 };
 
 const getAllUsers = async (req: Request, res: Response) => {

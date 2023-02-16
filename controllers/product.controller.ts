@@ -117,7 +117,7 @@ const paginateProductList = async (req: Request, res: Response) => {
     .exec();
 
   const count = await Product.count();
-  res.json({
+ return res.json({
     posts,
     totalPages: Math.ceil(count / Number(limit)),
     currentPage: page
@@ -126,7 +126,6 @@ const paginateProductList = async (req: Request, res: Response) => {
     throw new Error(error.message)
   }
 
-  return res.status(200).json({ message: 'User deleted successfully.' });
 };
 
 

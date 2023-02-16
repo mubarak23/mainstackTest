@@ -4,7 +4,7 @@ const errorHandleMiddleware = (err: Error, req: Request, res: Response, next: Ne
   console.log(res.status);
   // const statusCode = res.status ? req.status : 500;
   // res.status(res.status);
-  res.status(Number(res.status)).json({
+  return res.status(Number(res.status)).json({
     message: err.message,
     stack: process.env.NODE_ENV === 'development' ? err.stack : null,
   });

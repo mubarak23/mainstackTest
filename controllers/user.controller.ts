@@ -7,20 +7,25 @@ import { User, UserInput } from '../models/user.model';
 const createUser = async (req: Request, res: Response) => {
   const { email, fullName, password } = req.body;
 
-  if (!email || !fullName || !password ) {
-    return res.status(422).json({ message: 'The fields email, fullName and password are required' });
+  try {
+    if (!email || !fullName || !password ) {
+      return res.status(422).json({ message: 'The fields email, fullName and password are required' });
+    }
+  
+    const userInput: UserInput = {
+      fullName,
+      email,
+      password: await generatePasswordHash(password),
+     
+    };
+  
+    const userCreated = await User.create(userInput);
+  
+    return res.status(201).json({ message: 'User registered Successfully' });
+  } catch (error: any) {
+    return res.status(500).send(error.message)
   }
 
-  const userInput: UserInput = {
-    fullName,
-    email,
-    password: await generatePasswordHash(password),
-   
-  };
-
-  const userCreated = await User.create(userInput);
-
-  return res.status(201).json({ message: 'User registered Successfully' });
 };
 
 const getAllUsers = async (req: Request, res: Response) => {

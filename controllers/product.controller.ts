@@ -13,35 +13,41 @@ import { UploadRequest } from '../interface/uploadInterface';
 
 const createProduct = async (req: Request, res: Response) => {
   const { name, description, quantity, category } = req.body;
+  try {
+    if (!name || !description || !quantity ) {
+      return res.status(422).json({ message: 'The fields name, description and quantity are required' });
+    }
+  
+    const categoryExist = await Category.findById({ _id: category }).exec()
+    if (!categoryExist){
+      return res.status(404).json({message: 'Category Does not exist'})
+    }
+    const productInput: ProductInput = {
+      name,
+      description,
+      quantity,
+      user: req.user!,
+      category: categoryExist!
+    };
+    const productExist = await Product.findOne({ name }).exec()
+    if(productExist){
+      return res.status(422).json({ message: 'Product the provided Name already exist' });
+    }
+    const productCreated = await Product.create(productInput);
+  
+    // update product count
+  
+    return res.status(201).json({ data: productCreated });
 
-  if (!name || !description || !quantity ) {
-    return res.status(422).json({ message: 'The fields name, description and quantity are required' });
+  } catch (error: any) {
+    return res.status(500).send(error.message)
   }
+}
 
-  const categoryExist = await Category.findById({ _id: category }).exec()
- 
-  const productInput: ProductInput = {
-    name,
-    description,
-    quantity,
-    user: req.user!,
-    category: categoryExist!
-  };
-  const productExist = await Product.findOne({ name }).exec()
-  if(productExist){
-    return res.status(422).json({ message: 'Product the provided Name already exist' });
+  const getAllProduct = async (req: Request, res: Response) => {
+    const products = await Product.find().populate('user').populate('category').sort('-createdAt').exec();
+    return res.status(200).json({ data: products });
   }
-  const productCreated = await Product.create(productInput);
-
-  // update product count
-
-  return res.status(201).json({ data: productCreated });
-};
-
-const getAllProduct = async (req: Request, res: Response) => {
-  const products = await Product.find().populate('user').populate('category').sort('-createdAt').exec();
-  return res.status(200).json({ data: products });
-};
 
 const getProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -57,19 +63,23 @@ const getProduct = async (req: Request, res: Response) => {
 
 const updateProduct= async (req: Request, res: Response) => {
   const { id } = req.params;
- 
-  const product = await Product.findOne({ _id: id });
+  try {
+    const product = await Product.findOne({ _id: id });
 
-  if (!product) {
-    return res.status(404).json({ message: `Product with id "${id}" not found.` });
+    if (!product) {
+      return res.status(404).json({ message: `Product with id "${id}" not found.` });
+    }
+  
+  
+    await Product.updateOne({ _id: id }, req.body);
+  
+    const productUpdated = await Product.findById(id);
+  
+    return res.status(200).json({ data: productUpdated });
+  } catch (error: any) {
+    return res.status(500).send(error.message)
   }
-
-
-  await Product.updateOne({ _id: id }, req.body);
-
-  const productUpdated = await Product.findById(id);
-
-  return res.status(200).json({ data: productUpdated });
+ 
 };
 
 const productImageUpload = async (req: Request, res: Response) => {
@@ -108,7 +118,7 @@ const productImageUpload = async (req: Request, res: Response) => {
 
 const paginateProductList = async (req: Request, res: Response) => {
   
-  const { page = 1, limit  = 10 } = req.query;
+  const { page, limit   } = req.query;
 
   try {
     const posts = await Product.find()
@@ -123,7 +133,8 @@ const paginateProductList = async (req: Request, res: Response) => {
     currentPage: page
   });
   } catch (error: any) {
-    throw new Error(error.message)
+    return res.status(500).send(error.message)
+    
   }
 
 };

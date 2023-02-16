@@ -9,17 +9,15 @@ export const requiredToken = async (req: Request, res: Response, next: NextFunct
     access_token = req.headers['x-access-token'] as string;
     const jwtSecret = process.env.JWT_KEY_SECRET as string;
 
-   if (!access_token) {
-    throw new Error('You are not logged in')
-   //  return res.status(422).json({ message: "You are not logged in" });
+   if (!access_token) { 
+     return res.status(422).json({ message: "You are not logged in" });
    }
    const [decoded, err] = await jwt.verify(access_token, jwtSecret)
    
 
    if (err) {
      if(err.name && err.name === 'TokenExpiredError') {
-        throw new Error('Access token expired')
-        // return res.status(401).json({ message: "Access token expired" });
+        return res.status(401).json({ message: "Access token expired" });
      }
    }
 

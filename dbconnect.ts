@@ -1,22 +1,10 @@
-// import mongoose, { ConnectionOptions } from 'mongoose';
-
-
-// mongoose.Promise = global.Promise;
-
-
-
-// const connectToDatabase = async (): Promise<void> => {
-//   const options: ConnectionOptions = { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true };
-
-//   await mongoose.connect(`mongodb://127.0.0.1:27017/fastFood`, options);
-// };
-
-// export { connectToDatabase };
-
 
 import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
+require('dotenv').config({path:__dirname+'/./../../.env'}) 
 
-const url = 'mongodb://127.0.0.1:27017/stacktest'
+const url = process.env.DB_URL_LIVE as string
 
 const connectDb = async () => {
     try {

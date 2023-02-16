@@ -1,6 +1,14 @@
 import { Request, Response } from 'express';
+import path from 'path'
+import os from 'os'
+import * as Fs from 'fs'
+import { FileData } from '../interface/fileData';
+import * as ProductImageUploadService from '../service/uploadService'
+import { v4 as uuidv4 } from "uuid";
+import { promises as fsAsync } from 'fs';
 import { Category } from '../models/category.model';
 import { Product, ProductInput } from '../models/product.model';
+import { UploadRequest } from '../interface/uploadInterface';
 
 
 const createProduct = async (req: Request, res: Response) => {
@@ -11,7 +19,7 @@ const createProduct = async (req: Request, res: Response) => {
   }
 
   const categoryExist = await Category.findById({ _id: category }).exec()
-  console.log(categoryExist)
+ 
   const productInput: ProductInput = {
     name,
     description,
@@ -25,18 +33,20 @@ const createProduct = async (req: Request, res: Response) => {
   }
   const productCreated = await Product.create(productInput);
 
+  // update product count
+
   return res.status(201).json({ data: productCreated });
 };
 
 const getAllProduct = async (req: Request, res: Response) => {
-  const products = await Product.find().sort('-createdAt').exec();
+  const products = await Product.find().populate('user').populate('category').sort('-createdAt').exec();
   return res.status(200).json({ data: products });
 };
 
 const getProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const product = await Product.findOne({ _id: id }).exec();
+  const product = await Product.findOne({ _id: id }).populate('user').populate('category').exec();
 
   if (!product) {
     return res.status(404).json({ message: `Product with id "${id}" not found.` });
@@ -62,12 +72,72 @@ const updateProduct= async (req: Request, res: Response) => {
   return res.status(200).json({ data: productUpdated });
 };
 
-const deleteProduct = async (req: Request, res: Response) => {
-  const { id } = req.params;
+const productImageUpload = async (req: Request, res: Response) => {
+  if (!req.file) return res.status(400).json({message: `A file was not uploaded`})
 
-  await Category.findByIdAndDelete(id);
+  const id = req.params.id
+
+  const fileUploadDirectory = path.join(os.tmpdir(), "file-uploads");
+
+  if (!Fs.existsSync(fileUploadDirectory)) {
+    Fs.mkdirSync(fileUploadDirectory)
+  }
+  const randomFileName = uuidv4();
+
+  const uploadFilePath: string = path.join(os.tmpdir(), "file-uploads", randomFileName)
+
+  await fsAsync.writeFile(uploadFilePath, req.file.originalname);
+
+  const fileData: FileData = {
+    filePath: uploadFilePath,
+    mimeType: req.file.mimetype,
+    sizeInBytes: req.file.size
+  }
+
+  const productImagePayload: UploadRequest = {fileUuid: randomFileName, file: fileData}
+  const productImage = await ProductImageUploadService.cloudUpload(productImagePayload)
+
+
+  await fsAsync.unlink(uploadFilePath)
+
+  
+  await Product.updateOne({ _id: id }, { $push: {images: productImage } });
+
+  return res.status(200).json({message: `File Uploaded Successfully`})
+}
+
+const paginateProductList = async (req: Request, res: Response) => {
+  
+  const { page = 1, limit  = 10 } = req.query;
+
+  try {
+    const posts = await Product.find()
+    .limit(Number(limit) * 1)
+    .skip((Number(page) - 1) * Number(limit))
+    .exec();
+
+  const count = await Product.count();
+  res.json({
+    posts,
+    totalPages: Math.ceil(count / Number(limit)),
+    currentPage: page
+  });
+  } catch (error: any) {
+    throw new Error(error.message)
+  }
 
   return res.status(200).json({ message: 'User deleted successfully.' });
 };
 
-export { createProduct, getAllProduct, getProduct, deleteProduct, updateProduct };
+
+const deleteProduct = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  await Product.findByIdAndDelete(id);
+
+  return res.status(200).json({ message: 'Product deleted successfully.' });
+};
+
+
+
+export { createProduct, productImageUpload, getAllProduct, paginateProductList, getProduct, deleteProduct, updateProduct };

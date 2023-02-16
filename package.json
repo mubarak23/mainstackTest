@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./index.ts",
     "start": "vercel dev",

@@ -5,8 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./index.ts",
-    "tsc": "tsc",
-    "start:prod": "node build/index.js",
+    "start": "vercel dev",
+    "build": "rimraf dist && tsc",
+    "deploy": "vercel deploy --prod",
     "eslint:fix": "eslint --fix"
   },
   "author": "mubarak aminu",

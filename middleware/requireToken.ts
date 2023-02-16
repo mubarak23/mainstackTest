@@ -7,13 +7,13 @@ export const requiredToken = async (req: Request, res: Response, next: NextFunct
 
     let access_token;
     access_token = req.headers['x-access-token'] as string;
-   console.log(access_token)
+    const jwtSecret = process.env.JWT_KEY_SECRET as string;
 
    if (!access_token) {
     throw new Error('You are not logged in')
    //  return res.status(422).json({ message: "You are not logged in" });
    }
-   const [decoded, err] = await jwt.verify(access_token,  process.env.JWT_KEY_SECRET || 'erbdnrh458fnr',)
+   const [decoded, err] = await jwt.verify(access_token, jwtSecret)
    console.log('decoded', decoded)
 
    if (err) {

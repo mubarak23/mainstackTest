@@ -19,7 +19,9 @@ export const issueToken = async (user: any) => {
     const { _id } = user
     const expiresIn = '1d'
 
-    const generatedToken = jwt.sign({_id}, process.env.JWT_KEY_SECRET || 'erbdnrh458fnr', {
+    const jwtSecret = process.env.JWT_KEY_SECRET as string
+
+    const generatedToken = jwt.sign({_id}, jwtSecret, {
         expiresIn
       })
 

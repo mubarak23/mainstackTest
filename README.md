@@ -139,23 +139,82 @@ $ npm run build
 - URL:  /api/product
 - METHOD: GET
 - REQUIRED AUTH HEADER TOKEN: YES (name: x-access-token)
-- SAMPLE RESPONSE: [
-      {
+- SAMPLE RESPONSE: {
+  "data": [
+    {
+      "_id": "63ef4c31bcc42eb3ab11a3d7",
+      "name": "full chest",
+      "description": "hash and block chain operation",
+      "quantity": 50,
+      "images": [],
+      "softDeleted": false,
+      "user": "63ec2520934063a2c6e5121b",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
+      "createdAt": "2023-02-17T09:43:13.817Z",
+      "updatedAt": "2023-02-17T09:43:13.817Z",
+      "__v": 0
+    },
+    {
+      "_id": "63ee4d2f3620d1412292d723",
+      "name": "Valatine Bleez",
+      "description": "Top notch and prepare",
+      "quantity": 2500,
+      "images": [],
+      "softDeleted": false,
+      "user": "63ec2520934063a2c6e5121b",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
+      "createdAt": "2023-02-16T15:35:11.351Z",
+      "updatedAt": "2023-02-16T15:35:11.351Z",
+      "__v": 0
+    },
+    {
+      "_id": "63ee485fbe7332e73ddaee79",
+      "name": "Tech unwind",
+      "description": "Shakeup and prepare for the new year",
+      "quantity": 3000,
+      "images": [],
+      "softDeleted": false,
+      "user": "63ec2520934063a2c6e5121b",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
+      "createdAt": "2023-02-16T15:14:39.338Z",
+      "updatedAt": "2023-02-16T15:14:39.338Z",
+      "__v": 0
+    },
+    {
       "_id": "63ee483fbe7332e73ddaee74",
       "name": "JavaScript",
       "description": "Nodejs and Javascript Deep Dive",
       "quantity": 200,
       "images": [],
       "softDeleted": false,
-      "user": {
-        "_id": "63ec2520934063a2c6e5121b",
-        "fullName": "Demo1",
-        "email": "demo1@gmail.com",
-        "password": "$2a$10$TAS7D5K0.mf4CeGV663/tOWRsdHAdy2GjOd6olgPSWX6bmzxkAzVm",
-        "createdAt": "2023-02-15T00:19:44.182Z",
-        "updatedAt": "2023-02-15T00:19:44.182Z",
-        "__v": 0
-      },
+      "user": "63ec2520934063a2c6e5121b",
       "category": {
         "_id": "63ec2e50735354caabdc705f",
         "name": "Fresh",
@@ -182,15 +241,7 @@ $ npm run build
         }
       ],
       "softDeleted": false,
-      "user": {
-        "_id": "63ec2520934063a2c6e5121b",
-        "fullName": "Demo1",
-        "email": "demo1@gmail.com",
-        "password": "$2a$10$TAS7D5K0.mf4CeGV663/tOWRsdHAdy2GjOd6olgPSWX6bmzxkAzVm",
-        "createdAt": "2023-02-15T00:19:44.182Z",
-        "updatedAt": "2023-02-15T00:19:44.182Z",
-        "__v": 0
-      },
+      "user": "63ec2520934063a2c6e5121b",
       "category": {
         "_id": "63ec2e50735354caabdc705f",
         "name": "Fresh",
@@ -207,7 +258,7 @@ $ npm run build
     },
     {
       "_id": "63ee4252b88078e124b9f66b",
-      "name": "Go Fast with Solidity",
+      "name": "fetch category and user on update",
       "description": " Web3 is here and the future",
       "quantity": 100,
       "images": [
@@ -221,15 +272,7 @@ $ npm run build
         }
       ],
       "softDeleted": false,
-      "user": {
-        "_id": "63ec2520934063a2c6e5121b",
-        "fullName": "Demo1",
-        "email": "demo1@gmail.com",
-        "password": "$2a$10$TAS7D5K0.mf4CeGV663/tOWRsdHAdy2GjOd6olgPSWX6bmzxkAzVm",
-        "createdAt": "2023-02-15T00:19:44.182Z",
-        "updatedAt": "2023-02-15T00:19:44.182Z",
-        "__v": 0
-      },
+      "user": "63ec2520934063a2c6e5121b",
       "category": {
         "_id": "63ec2e50735354caabdc705f",
         "name": "Fresh",
@@ -241,12 +284,12 @@ $ npm run build
         "__v": 0
       },
       "createdAt": "2023-02-16T14:48:50.501Z",
-      "updatedAt": "2023-02-16T15:07:10.832Z",
+      "updatedAt": "2023-02-17T09:51:07.846Z",
       "__v": 0
     },
     {
       "_id": "63ee421eb88078e124b9f666",
-      "name": "Paster",
+      "name": "update name",
       "description": "Delicious Meal",
       "quantity": 20,
       "images": [
@@ -256,15 +299,7 @@ $ npm run build
         }
       ],
       "softDeleted": false,
-      "user": {
-        "_id": "63ec2520934063a2c6e5121b",
-        "fullName": "Demo1",
-        "email": "demo1@gmail.com",
-        "password": "$2a$10$TAS7D5K0.mf4CeGV663/tOWRsdHAdy2GjOd6olgPSWX6bmzxkAzVm",
-        "createdAt": "2023-02-15T00:19:44.182Z",
-        "updatedAt": "2023-02-15T00:19:44.182Z",
-        "__v": 0
-      },
+      "user": "63ec2520934063a2c6e5121b",
       "category": {
         "_id": "63ec2e50735354caabdc705f",
         "name": "Fresh",
@@ -276,7 +311,7 @@ $ npm run build
         "__v": 0
       },
       "createdAt": "2023-02-16T14:47:58.673Z",
-      "updatedAt": "2023-02-16T15:08:33.183Z",
+      "updatedAt": "2023-02-16T15:39:25.119Z",
       "__v": 0
     },
     {
@@ -295,15 +330,7 @@ $ npm run build
         }
       ],
       "softDeleted": false,
-      "user": {
-        "_id": "63ec2520934063a2c6e5121b",
-        "fullName": "Demo1",
-        "email": "demo1@gmail.com",
-        "password": "$2a$10$TAS7D5K0.mf4CeGV663/tOWRsdHAdy2GjOd6olgPSWX6bmzxkAzVm",
-        "createdAt": "2023-02-15T00:19:44.182Z",
-        "updatedAt": "2023-02-15T00:19:44.182Z",
-        "__v": 0
-      },
+      "user": "63ec2520934063a2c6e5121b",
       "category": {
         "_id": "63ec2e50735354caabdc705f",
         "name": "Fresh",
@@ -320,6 +347,8 @@ $ npm run build
     }
   ]
 }
+
+
 
 # GET SINGLE PRODUCT
 - URL: /api/product/{productId}
@@ -346,7 +375,7 @@ $ npm run build
       "_id": "63ec2520934063a2c6e5121b",
       "fullName": "Demo1",
       "email": "demo1@gmail.com",
-      "password": "$2a$10$TAS7D5K0.mf4CeGV663/tOWRsdHAdy2GjOd6olgPSWX6bmzxkAzVm",
+      
       "createdAt": "2023-02-15T00:19:44.182Z",
       "updatedAt": "2023-02-15T00:19:44.182Z",
       "__v": 0
@@ -376,7 +405,7 @@ $ npm run build
   page: 1
 }
 - SAMPLE RESPONSE: {
-  "posts": [
+  "products": [
     {
       "_id": "63ec36397868a75554d5e69b",
       "name": "Digital",
@@ -394,7 +423,16 @@ $ npm run build
       ],
       "softDeleted": false,
       "user": "63ec2520934063a2c6e5121b",
-      "category": "63ec2e50735354caabdc705f",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
       "createdAt": "2023-02-15T01:32:41.260Z",
       "updatedAt": "2023-02-16T14:27:15.345Z",
       "__v": 0
@@ -412,7 +450,16 @@ $ npm run build
       ],
       "softDeleted": false,
       "user": "63ec2520934063a2c6e5121b",
-      "category": "63ec2e50735354caabdc705f",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
       "createdAt": "2023-02-16T14:47:58.673Z",
       "updatedAt": "2023-02-16T15:39:25.119Z",
       "__v": 0
@@ -434,7 +481,16 @@ $ npm run build
       ],
       "softDeleted": false,
       "user": "63ec2520934063a2c6e5121b",
-      "category": "63ec2e50735354caabdc705f",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
       "createdAt": "2023-02-16T14:48:50.501Z",
       "updatedAt": "2023-02-17T09:51:07.846Z",
       "__v": 0
@@ -452,7 +508,16 @@ $ npm run build
       ],
       "softDeleted": false,
       "user": "63ec2520934063a2c6e5121b",
-      "category": "63ec2e50735354caabdc705f",
+      "category": {
+        "_id": "63ec2e50735354caabdc705f",
+        "name": "Fresh",
+        "description": "Fresh Fruits",
+        "softDeleted": false,
+        "user": "63ec2520934063a2c6e5121b",
+        "createdAt": "2023-02-15T00:58:56.941Z",
+        "updatedAt": "2023-02-15T00:58:56.941Z",
+        "__v": 0
+      },
       "createdAt": "2023-02-16T14:49:43.361Z",
       "updatedAt": "2023-02-16T15:00:50.239Z",
       "__v": 0

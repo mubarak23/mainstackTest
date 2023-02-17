@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,23 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const dotenv_1 = __importDefault(require("dotenv"));
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-dotenv_1.default.config({ path: __dirname + '/./../../.env' });
-// dotenv.config();
-// require('dotenv').config({path:__dirname+'/./../../.env'}) 
+import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
 const url = process.env.DB_URL;
 const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect('mongodb://127.0.0.1:27017/stacktest');
+        yield mongoose.connect(url);
         console.log('Database Connected Successfully...');
     }
     catch (error) {
@@ -32,4 +21,4 @@ const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
         setTimeout(connectDb, 500);
     }
 });
-exports.default = connectDb;
+export default connectDb;

@@ -38,6 +38,7 @@ $ npm run build
 
 ```
 
+```bash
 ## Endpoints 
 
 # CREATE A CATEGORY
@@ -539,3 +540,5 @@ $ npm run build
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGVmYXVsdE8xIiwiZW1haWwiOiJkZWZhdWx0MDFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkT2VKLjlwUGtIcjJqdW1Wd3M1Mk83ZTFZcFNyTFkxY0NnYmNE"
   }
 }
+
+```

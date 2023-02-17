@@ -121,14 +121,14 @@ const paginateProductList = async (req: Request, res: Response) => {
   const { page, limit   } = req.query;
 
   try {
-    const posts = await Product.find()
+    const products = await Product.find()
     .limit(Number(limit) * 1)
     .skip((Number(page) - 1) * Number(limit))
     .exec();
 
   const count = await Product.count();
  return res.json({
-    posts,
+    products,
     totalPages: Math.ceil(count / Number(limit)),
     currentPage: page
   });

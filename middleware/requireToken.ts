@@ -12,7 +12,7 @@ export const requiredToken = async (req: Request, res: Response, next: NextFunct
    if (!access_token) { 
      return res.status(422).json({ message: "You are not logged in" });
    }
-   const [decoded, err] = await jwt.verify(access_token, 'erbdnrh458fnr')
+   const [decoded, err] = await jwt.verify(access_token, jwtSecret)
    
 
    if (err) {

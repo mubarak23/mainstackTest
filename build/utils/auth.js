@@ -30,7 +30,7 @@ const issueToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const { _id } = user;
     const expiresIn = '1d';
     const jwtSecret = process.env.JWT_KEY_SECRET;
-    const generatedToken = jsonwebtoken_1.default.sign({ _id }, jwtSecret, {
+    const generatedToken = jsonwebtoken_1.default.sign({ _id }, 'erbdnrh458fnr', {
         expiresIn
     });
     return {

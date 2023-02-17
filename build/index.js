@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const dbconnect_1 = __importDefault(require("./dbconnect"));
@@ -22,12 +21,17 @@ const user_route_1 = require("./routes/user.route");
 const category_route_1 = require("./routes/category.route");
 const product_route_1 = require("./routes/product.route");
 const errorhandle_1 = require("./middleware/errorhandle");
-dotenv_1.default.config();
-require('dotenv').config({ path: __dirname + '/./../../.env' });
+// dotenv.config({path:__dirname+'/./../../.env'});
+// require('dotenv').config({path:__dirname+'/./../../.env'}) 
+// cloudinary.v2.config({
+//   cloud_name: process.env.CLOUD_NAME,  //|| 'techarewa-com',
+//   api_key: process.env.STORAGE_API_KEY, // || '612574853735338',
+//   api_secret: process.env.STORAGE_API_SECRET,  // || 'NOS5BEdabuSQaxB_bJRgSungo6A',
+// })
 cloudinary_1.default.v2.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.STORAGE_API_KEY,
-    api_secret: process.env.STORAGE_API_SECRET, // || 'NOS5BEdabuSQaxB_bJRgSungo6A',
+    cloud_name: 'techarewa-com',
+    api_key: '612574853735338',
+    api_secret: 'NOS5BEdabuSQaxB_bJRgSungo6A',
 });
 const HOST = process.env.HOST || 'http://localhost';
 const PORT = parseInt(process.env.PORT || '4500');

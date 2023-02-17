@@ -14,12 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-require('dotenv').config({ path: __dirname + '/./../../.env' });
-const url = process.env.DB_URL_LIVE;
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+dotenv_1.default.config({ path: __dirname + '/./../../.env' });
+// dotenv.config();
+// require('dotenv').config({path:__dirname+'/./../../.env'}) 
+const url = process.env.DB_URL;
 const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect(url);
+        yield mongoose_1.default.connect('mongodb://127.0.0.1:27017/stacktest');
         console.log('Database Connected Successfully...');
     }
     catch (error) {

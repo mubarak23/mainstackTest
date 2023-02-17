@@ -42,7 +42,7 @@ const requiredToken = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     if (!access_token) {
         return res.status(422).json({ message: "You are not logged in" });
     }
-    const [decoded, err] = yield jwt.verify(access_token, jwtSecret);
+    const [decoded, err] = yield jwt.verify(access_token, 'erbdnrh458fnr');
     if (err) {
         if (err.name && err.name === 'TokenExpiredError') {
             return res.status(401).json({ message: "Access token expired" });

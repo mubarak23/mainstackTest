@@ -45,14 +45,14 @@ const createProduct = async (req: Request, res: Response) => {
 }
 
   const getAllProduct = async (req: Request, res: Response) => {
-    const products = await Product.find().populate('user').populate('category').sort('-createdAt').exec();
+    const products = await Product.find().populate('category').sort('-createdAt').exec();
     return res.status(200).json({ data: products });
   }
 
 const getProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const product = await Product.findOne({ _id: id }).populate('user').populate('category').exec();
+  const product = await Product.findOne({ _id: id }).populate('user').populate('category').select("-password").exec();
 
   if (!product) {
     return res.status(404).json({ message: `Product with id "${id}" not found.` });
@@ -121,7 +121,7 @@ const paginateProductList = async (req: Request, res: Response) => {
   const { page, limit   } = req.query;
 
   try {
-    const products = await Product.find()
+    const products = await Product.find().populate('category')
     .limit(Number(limit) * 1)
     .skip((Number(page) - 1) * Number(limit))
     .exec();

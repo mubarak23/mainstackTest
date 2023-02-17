@@ -90,7 +90,6 @@ $ npm run build
     "updatedAt": "2023-02-15T00:58:56.941Z",
     "__v": 0
   }
-}
 ]
 
 # CREATE A PRODUCT

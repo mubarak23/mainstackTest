@@ -7,7 +7,7 @@ dotenv.config({path: "../.env"});
 
 
 export const validPassword = (password: string, hash: string, salt: string) => {
-    //  const salt = crypto.randomBytes(16).toString('hex');
+    
     const verify = crypto
         .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
         .toString('hex')
@@ -21,7 +21,7 @@ export const issueToken = async (user: any) => {
 
     const jwtSecret = process.env.JWT_KEY_SECRET as string
 
-    const generatedToken = jwt.sign({_id}, 'erbdnrh458fnr', {
+    const generatedToken = jwt.sign({_id}, jwtSecret, {
         expiresIn
       })
 

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node ./index.ts",
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "node ./build/index.js",
     "test-dev": "cross-env NODE_ENV=test nodemon --watch . --ext ts --exec \"mocha -r ts-node/register test/**/*.test.ts\"  --timeout 10000",
     "eslint:fix": "eslint --fix"
   },

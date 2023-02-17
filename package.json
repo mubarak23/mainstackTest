@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type": "module",
+
   "scripts": {
-    "dev": "nodemon --exec ts-node ./index.ts",
+    "dev": "nodemon --exec ts-node-esm index.ts",
     "build": "tsc",
-    "start": "node ./build/index.js",
+    "start": "ts-node-esm index.ts",
     "test-dev": "cross-env NODE_ENV=test nodemon --watch . --ext ts --exec \"mocha -r ts-node/register test/**/*.test.ts\"  --timeout 10000",
     "eslint:fix": "eslint --fix"
   },

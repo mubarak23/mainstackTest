@@ -10,10 +10,9 @@
 
 
 ## Deployed service
-- [Live URL]: https://main-stack-opbs.onrender.com
+-  https://main-stack-opbs.onrender.com
 
 ## Installation
-[Live URL]: https://main-stack-opbs.onrender.com
 
 # install package 
 -- npm install

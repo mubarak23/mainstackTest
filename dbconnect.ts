@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 // const __dirname = path.dirname(__filename);
 
-dotenv.config({path:__dirname+'/./../../.env'});
+// dotenv.config({path:__dirname+'/./../../.env'});
 
 // dotenv.config();
 // require('dotenv').config({path:__dirname+'/./../../.env'}) 

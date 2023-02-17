@@ -2,12 +2,13 @@
   "compilerOptions": {
     "noEmit": false,
     "target": "es6",
-    "module": "commonjs",
+    "module": "ES2020",
     "outDir": "build",
     "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution":"node",
   },
   "exclude": ["node_modules", "test/**/*.ts"]
 }

@@ -17,7 +17,7 @@ const url = process.env.DB_URL as string
 
 const connectDb = async () => {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/stacktest')
+        await mongoose.connect('mongodb+srv://mubarak23:3b3b3b3b@cluster0.5jhl3.mongodb.net/?retryWrites=true&w=majority')
         console.log('Database Connected Successfully...')
     } catch (error: any) {
         console.log(error.message)

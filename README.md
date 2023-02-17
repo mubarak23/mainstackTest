@@ -2,7 +2,13 @@
 
 ## Description
 
-[Live URL]: https://foodcourttest.vercel.app/
+- Using Nodejs, Typescript, Express and MongoDB, build a simple ecommerce API with the following features:
+1. Create, get all and get single product
+2. Update product
+3. Delete product
+4. Simple pagination
+
+[Live URL]: https://main-stack-opbs.onrender.com
 
 ## Installation
 

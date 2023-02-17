@@ -118,7 +118,7 @@ const productImageUpload = async (req: Request, res: Response) => {
 
 const paginateProductList = async (req: Request, res: Response) => {
   
-  const { page, limit   } = req.query;
+  const { page=1, limit=10 } = req.query;
 
   try {
     const products = await Product.find().populate('category')
